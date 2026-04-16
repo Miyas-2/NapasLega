@@ -23,20 +23,26 @@ jobs:
           HOST: ${{ secrets.IP_EC2 }}
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@$HOST << 'EOF'
+            # 1. PAKSA LOAD NVM (Agar pakai Node terbaru)
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            
             cd /var/www/NapasLega
-            
             git pull origin main
-            
             cd fe
             
-            sudo chown -R ubuntu:ubuntu /var/www/NapasLega/fe
+            # 2. Pastikan pakai Node 22 (sesuai yg kamu install manual tadi)
+            nvm use 22 || nvm install 22
             
+            # 3. Izin & Bersihkan
+            sudo chown -R ubuntu:ubuntu /var/www/NapasLega/fe
             rm -rf dist
             
+            # 4. Build Ulang
             npm install
             npm run build
             
+            # 5. Balikkan Izin & Restart
             sudo chown -R www-data:www-data /var/www/NapasLega/fe/dist
-            
             sudo systemctl restart nginx
           EOF
