@@ -1,6 +1,5 @@
 name: Deploy Frontend React to EC2
 
-# Menjalankan otomatis ketika ada Push di branch main
 on:
   push:
     branches:
@@ -24,22 +23,16 @@ jobs:
           HOST: ${{ secrets.IP_EC2 }}
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@$HOST << 'EOF'
-            # 1. Masuk ke lokasi repository yang benar (Awas huruf besar kecil Linux)
             cd /var/www/NapasLega
             
-            # 2. Tarik update terbaru frontend dan backend dari github
             git pull origin main
             
-            # 3. Masuk ke folder Frontend
             cd fe
             
-            # 4. Instalasi & Build React HTML-nya 
             npm install
             npm run build
             
-            # 5. Opsional (Namun aman): Beri izin ulang agar Nginx bebas membaca file
             sudo chown -R www-data:www-data /var/www/NapasLega/fe/dist
             
-            # 6. Terakhir: Refresh config Nginx
             sudo systemctl restart nginx
           EOF
