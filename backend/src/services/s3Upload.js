@@ -17,7 +17,9 @@ const upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: process.env.S3_BUCKET,
-    contentType: multerS3.AUTO_CONTENT_TYPE,
+    contentType: function (req, file, cb) {
+      cb(null, file.mimetype || 'image/jpeg');
+    },
     contentDisposition: 'inline',
     // (Opsional) set acl ke public-read jika bucket rules allow
     // acl: 'public-read', 
