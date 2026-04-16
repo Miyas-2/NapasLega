@@ -29,6 +29,10 @@ jobs:
             
             cd fe
             
+            sudo chown -R ubuntu:ubuntu /var/www/NapasLega/fe
+            
+            rm -rf dist
+            
             npm install
             npm run build
             
