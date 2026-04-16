@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  napaslega-backend:
+    # Menggunakan Image yang sudah dipush ke Docker Hub
+    image: miyas2/napaslega-backend:v1
+    container_name: napaslega-be
+    ports:
+      - "5000:5000"
+    
+    # Otomatis melempar semua variabel di file backend/.env ke dalam kontainer
+    env_file:
+      - ./backend/.env
+      
+    # Restart otomatis jika server AWS mati lalu menyala
+    restart: unless-stopped
