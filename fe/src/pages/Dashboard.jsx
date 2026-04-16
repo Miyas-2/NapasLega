@@ -76,7 +76,7 @@ export default function Dashboard() {
       <header className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">Pemantauan ISPA & Kualitas Udara By Moh Ilyas NRP 152023193</h1>
         <p className="text-muted-foreground mt-1">
-          Data real-time PM2.5 dan sebaran laporan gejala medis.
+          Data real-time PM2.5, AQI, dan sebaran laporan gejala medis.
           (Lokasi: {weatherData?.location?.name}, {weatherData?.location?.region})
         </p>
       </header>
