@@ -63,7 +63,7 @@ export default function HistoryPage() {
     const fetchSymptoms = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:5000/api/symptoms/history?page=${sympPage}&limit=${sympLimit}`, {
+        const res = await axios.get(`/api/symptoms/history?page=${sympPage}&limit=${sympLimit}`, {
            headers: { Authorization: `Bearer ${token}` }
         });
         if (res.data.success) {
@@ -80,7 +80,7 @@ export default function HistoryPage() {
     const fetchBookings = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:5000/api/bookings/history?page=${bookPage}&limit=${bookLimit}`, {
+        const res = await axios.get(`/api/bookings/history?page=${bookPage}&limit=${bookLimit}`, {
            headers: { Authorization: `Bearer ${token}` }
         });
         if (res.data.success) {

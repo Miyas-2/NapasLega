@@ -16,7 +16,7 @@ export default function Login() {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', form);
+      const res = await axios.post('/api/auth/login', form);
       if (res.data.success) {
         login(res.data.token, res.data.user);
         navigate('/');

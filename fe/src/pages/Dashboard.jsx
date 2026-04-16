@@ -15,10 +15,10 @@ export default function Dashboard() {
   useEffect(() => {
     const loadData = async (lat, lng) => {
       try {
-        const resAqi = axios.get(`http://localhost:5000/api/aqi?lat=${lat}&lon=${lng}`);
-        const resMap = axios.get('http://localhost:5000/api/symptoms/map');
-        const resInsights = axios.get('http://localhost:5000/api/symptoms/insights');
-        const resStats = axios.get('http://localhost:5000/api/symptoms/stats');
+        const resAqi = axios.get(`/api/aqi?lat=${lat}&lon=${lng}`);
+        const resMap = axios.get('/api/symptoms/map');
+        const resInsights = axios.get('/api/symptoms/insights');
+        const resStats = axios.get('/api/symptoms/stats');
         
         const [weather, map, insight, stats] = await Promise.all([resAqi, resMap, resInsights, resStats]);
         if (weather.data.success) setWeatherData(weather.data.data);

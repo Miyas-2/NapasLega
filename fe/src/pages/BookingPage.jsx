@@ -12,7 +12,7 @@ export default function BookingPage() {
   const [clinics, setClinics] = useState([]);
 
   React.useEffect(() => {
-     axios.get('http://localhost:5000/api/clinics')
+     axios.get('/api/clinics')
        .then(res => {
          if (res.data.success) {
            setClinics(res.data.data);
@@ -38,7 +38,7 @@ export default function BookingPage() {
       formData.append('booking_date', bookingDate ? new Date(bookingDate).toISOString() : new Date().toISOString());
 
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/bookings', formData, {
+      await axios.post('/api/bookings', formData, {
          headers: { 
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${token}` 

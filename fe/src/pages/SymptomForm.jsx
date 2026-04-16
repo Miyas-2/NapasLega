@@ -21,7 +21,7 @@ export default function SymptomForm() {
             setGeoLoc({ lat, lng });
             
             try {
-                const res = await axios.get(`http://localhost:5000/api/aqi?lat=${lat}&lon=${lng}`);
+                const res = await axios.get(`/api/aqi?lat=${lat}&lon=${lng}`);
                 if (res.data.success) {
                     setWeatherCtx(res.data.data);
                 }
@@ -59,7 +59,7 @@ export default function SymptomForm() {
       };
       
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/symptoms', payload, {
+      await axios.post('/api/symptoms', payload, {
          headers: { 'Authorization': `Bearer ${token}` }
       });
       
